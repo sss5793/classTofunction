@@ -1,6 +1,7 @@
 function Factor(number) {
 
-    var factorSet = [];
+    let factorSet = new Set();
+    // let factorSet = [];
 
     function isFactor(potentialFactor) {
         return number % potentialFactor == 0;
@@ -8,8 +9,8 @@ function Factor(number) {
 
     for (var pod = 1; pod <= Math.sqrt(number); pod++ ) {
         if (isFactor(pod)) {
-            factorSet.push(pod);
-            factorSet.push(number / pod);
+            factorSet.add(pod);
+            factorSet.add(number / pod);
         }
     }
     return factorSet;
@@ -20,6 +21,7 @@ function ClassifierAlpha(num) {
     const number = num || 0;
 
     // const let 차이
+    // const는 재할당 불가능 let은 재할당 가능
     const currentFactor = Factor(number);
 
     function sum(factors) {
@@ -74,7 +76,9 @@ function PrimeAlpha(num) {
     // }
 
     function equalSet(aset, bset) {
-        if (aset.length!== bset.length) return false;
+        const bset_ = new Set(bset);
+        // console.log(aset);
+        if (aset.length!== bset_.length) return false;
         for (var a of aset) if (!bset.includes(a)) return false;
         return true;
     }
@@ -121,12 +125,7 @@ function NumberType(num) {
     console.log(num+ ' : ', result)
 }
 
-NumberType(2);
-NumberType(3);
-NumberType(4);
-NumberType(5);
-NumberType(6);
-NumberType(7);
-NumberType(8);
-NumberType(9);
-NumberType(10);
+
+const arr = [2,3,4,5,6,7,8,9,10]
+
+arr.forEach(ele => NumberType(ele))
